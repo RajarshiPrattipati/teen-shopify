@@ -3,6 +3,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import React, { useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
+import useIsMobile from "../hooks/useIsMobile";
 
 import img1 from "../assets/Images/1.webp";
 import img2 from "../assets/Images/2.webp";
@@ -170,9 +171,9 @@ const Shop = () => {
   const ref = useRef(null);
 
   const Horizontalref = useRef(null);
+  const isMobile = useIsMobile(768);
 
   useLayoutEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (isMobile) {
       // Use natural vertical flow on mobile
       return;
@@ -220,7 +221,7 @@ const Shop = () => {
 
   return (
     <Section ref={ref} id="shop">
-      <Title data-scroll data-scroll-speed="-1">
+      <Title data-scroll={!isMobile ? true : undefined} data-scroll-speed={!isMobile ? "-1" : undefined}>
         New Collection
       </Title>
       <Left>

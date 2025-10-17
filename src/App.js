@@ -15,11 +15,14 @@ import NewArrival from "./sections/NewArrival";
 import Shop from "./sections/Shop";
 import GlobalStyles from "./styles/GlobalStyles";
 import { dark } from "./styles/Themes";
+import useIsMobile from "./hooks/useIsMobile";
+import MobileSite from "./mobile/MobileSite";
 
 function App() {
   // useLocoScroll();
   const containerRef = useRef(null);
   const [Loaded, setLoaded] = useState(false);
+  const isMobile = useIsMobile(768);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -32,6 +35,13 @@ function App() {
     <>
       <ThemeProvider theme={dark}>
         <GlobalStyles />
+        {isMobile ? (
+          // Pure mobile experience without Locomotive
+          <main className="MobileApp">
+            <AnimatePresence>{Loaded ? null : <Loader />}</AnimatePresence>
+            <MobileSite />
+          </main>
+        ) : (
         <LocomotiveScrollProvider
           options={{
             smooth: true,
@@ -67,6 +77,7 @@ function App() {
             </AnimatePresence>
           </main>
         </LocomotiveScrollProvider>
+        )}
       </ThemeProvider>
     </>
   );

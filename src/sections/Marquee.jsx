@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import useIsMobile from '../hooks/useIsMobile';
 
 const Section = styled.section`
   min-height: 100vh;
@@ -67,55 +68,56 @@ const Banner = styled.h1`
 `;
 
 const Marquee = () => {
+  const isMobile = useIsMobile(768);
   return (
     <Section>
       <Container id="direction">
         <Banner>
           <span
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="8"
-            data-scroll-target="#direction"
+            data-scroll={!isMobile ? true : undefined}
+            data-scroll-direction={!isMobile ? "horizontal" : undefined}
+            data-scroll-speed={!isMobile ? "8" : undefined}
+            data-scroll-target={!isMobile ? "#direction" : undefined}
           >
             Fashon is an armour
           </span>
         </Banner>
-        <Banner data-scroll data-scroll-speed="-2" data-scroll-target="#direction">
+        <Banner data-scroll={!isMobile ? true : undefined} data-scroll-speed={!isMobile ? "-2" : undefined} data-scroll-target={!isMobile ? "#direction" : undefined}>
           <span
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="-6"
-            data-scroll-target="#direction"
+            data-scroll={!isMobile ? true : undefined}
+            data-scroll-direction={!isMobile ? "horizontal" : undefined}
+            data-scroll-speed={!isMobile ? "-6" : undefined}
+            data-scroll-target={!isMobile ? "#direction" : undefined}
           >
             To survive everyday life
           </span>
         </Banner>
         <Banner>
           <span
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="6"
-            data-scroll-target="#direction"
+            data-scroll={!isMobile ? true : undefined}
+            data-scroll-direction={!isMobile ? "horizontal" : undefined}
+            data-scroll-speed={!isMobile ? "6" : undefined}
+            data-scroll-target={!isMobile ? "#direction" : undefined}
           >
             One is never over-dressed or
           </span>
         </Banner>
         <Banner>
           <span
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="-4"
-            data-scroll-target="#direction"
+            data-scroll={!isMobile ? true : undefined}
+            data-scroll-direction={!isMobile ? "horizontal" : undefined}
+            data-scroll-speed={!isMobile ? "-4" : undefined}
+            data-scroll-target={!isMobile ? "#direction" : undefined}
           >
             under-dressed
           </span>
         </Banner>
-        <Banner data-scroll data-scroll-speed="6" data-scroll-target="#direction">
+        <Banner data-scroll={!isMobile ? true : undefined} data-scroll-speed={!isMobile ? "6" : undefined} data-scroll-target={!isMobile ? "#direction" : undefined}>
           <span
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="6"
-            data-scroll-target="#direction"
+            data-scroll={!isMobile ? true : undefined}
+            data-scroll-direction={!isMobile ? "horizontal" : undefined}
+            data-scroll-speed={!isMobile ? "6" : undefined}
+            data-scroll-target={!isMobile ? "#direction" : undefined}
           >
             with a Little Black Dress.
           </span>

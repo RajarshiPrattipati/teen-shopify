@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import useIsMobile from "../hooks/useIsMobile";
 
 import img1 from "../assets/Images/1.webp";
 import img2 from "../assets/Images/2.webp";
@@ -134,16 +135,21 @@ const Title = styled.h1`
 `;
 
 const About = () => {
+  const isMobile = useIsMobile(768);
   return (
     <Section id="about-target" className="about">
       <Title
-        data-scroll
-        data-scroll-speed="-2"
-        data-scroll-direction="horizontal"
+        data-scroll={!isMobile ? true : undefined}
+        data-scroll-speed={!isMobile ? "-2" : undefined}
+        data-scroll-direction={!isMobile ? "horizontal" : undefined}
       >
         About Us
       </Title>
-      <Left data-scroll data-scroll-sticky data-scroll-target="#about-target">
+      <Left
+        data-scroll={!isMobile ? true : undefined}
+        data-scroll-sticky={!isMobile ? true : undefined}
+        data-scroll-target={!isMobile ? "#about-target" : undefined}
+      >
         We&apos;re fashion studio based in california. We create unique designs
         that will blow your mind. We also design unique jewellary pieces.
         Fashion is an ART that can not be grasped by everyone.

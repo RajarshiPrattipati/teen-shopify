@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import React, {  useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
+import useIsMobile from '../hooks/useIsMobile';
 
 import img1 from '../assets/Images/11.webp';
 import img2 from '../assets/Images/12.webp';
@@ -165,10 +166,10 @@ const NewArrival = () => {
   const ref = useRef(null);
 
   const ScrollingRef = useRef(null);
+  const isMobile = useIsMobile(768);
 
 
   useLayoutEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (isMobile) {
       // Natural flow on mobile
       return;
@@ -222,7 +223,9 @@ const NewArrival = () => {
       <Overlay />
 
       <Title
-        data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal"
+        data-scroll={!isMobile ? true : undefined}
+        data-scroll-speed={!isMobile ? "-2" : undefined}
+        data-scroll-direction={!isMobile ? 'horizontal' : undefined}
       >
         New Arrivals
       </Title>
@@ -234,7 +237,7 @@ const NewArrival = () => {
         <Photos img={img4} name="T-shirts" />
       </Container>
 
-      <Text data-scroll data-scroll-speed="-4">
+      <Text data-scroll={!isMobile ? true : undefined} data-scroll-speed={!isMobile ? "-4" : undefined}>
         There is new collection available for cool clothes in all sizes. This collection
         is a great way to find a new look for you. It offers a variety of cool apparel
         styles to fit your taste, while you can also find some cool clothes that you can

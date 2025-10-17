@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import styled from "styled-components";
+import useIsMobile from "../hooks/useIsMobile";
 
 // Use public logo jpg
 
@@ -112,6 +113,7 @@ const Bottom = styled.div`
 
 const Footer = () => {
   const { scroll } = useLocomotiveScroll();
+  const isMobile = useIsMobile(768);
 
   const handleScroll = (id) => {
     const elem = document.querySelector(id);
@@ -176,16 +178,16 @@ const Footer = () => {
         </ul>
         <Bottom>
           <span
-            data-scroll
-            data-scroll-speed="2"
-            data-scroll-direction="horizontal"
+            data-scroll={!isMobile ? true : undefined}
+            data-scroll-speed={!isMobile ? "2" : undefined}
+            data-scroll-direction={!isMobile ? "horizontal" : undefined}
           >
             &copy; 2022. All Rights Reserved.
           </span>
           <span
-            data-scroll
-            data-scroll-speed="-2"
-            data-scroll-direction="horizontal"
+            data-scroll={!isMobile ? true : undefined}
+            data-scroll-speed={!isMobile ? "-2" : undefined}
+            data-scroll-direction={!isMobile ? "horizontal" : undefined}
           >
             Made with &hearts; by{" "}
             <a

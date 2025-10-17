@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import MainVideo from "../assets/Walking Girl.mp4";
+import useIsMobile from "../hooks/useIsMobile";
 
 const VideoContainer = styled.section`
   width: 100%;
@@ -103,6 +104,7 @@ const item = {
 };
 
 const CoverVideo = () => {
+  const isMobile = useIsMobile(768);
   return (
     <VideoContainer data-scroll>
       <DarkOverlay />
@@ -113,9 +115,9 @@ const CoverVideo = () => {
             <motion.h1
               key={idx}
               variants={item}
-              data-scroll
-              data-scroll-delay={(0.13 - idx * 0.01).toFixed(2)}
-              data-scroll-speed="4"
+              data-scroll={!isMobile ? true : undefined}
+              data-scroll-delay={!isMobile ? (0.13 - idx * 0.01).toFixed(2) : undefined}
+              data-scroll-speed={!isMobile ? "4" : undefined}
             >
               {ch}
             </motion.h1>
@@ -124,9 +126,9 @@ const CoverVideo = () => {
         <motion.h2
           style={{ alignSelf: "flex-end" }}
           variants={item}
-          data-scroll
-          data-scroll-delay="0.04"
-          data-scroll-speed="2"
+          data-scroll={!isMobile ? true : undefined}
+          data-scroll-delay={!isMobile ? "0.04" : undefined}
+          data-scroll-speed={!isMobile ? "2" : undefined}
         >
           inspire. create. belive
         </motion.h2>
