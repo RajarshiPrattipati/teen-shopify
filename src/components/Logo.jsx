@@ -24,11 +24,6 @@ const Container = styled.div`
     display: block;
   }
 `;
-const Text = styled(motion.span)`
-  font-size: ${(props) => props.theme.fontlg};
-  color: ${(props) => props.theme.text};
-  padding-bottom: 0.5rem;
-`;
 
 const pathVariants = {
   hidden: {
@@ -42,22 +37,6 @@ const pathVariants = {
     transition: {
       duration: 2,
       delay: 3, // 0
-      ease: 'easeInOut',
-    },
-  },
-};
-const textVariants = {
-  hidden: {
-    opacity: 0,
-    x: -50,
-  },
-  visible: {
-    opacity: 1,
-    x: -5,
-
-    transition: {
-      duration: 2,
-      delay: 5, // 2
       ease: 'easeInOut',
     },
   },
@@ -76,9 +55,6 @@ const Logo = () => {
           alt="TeenShopify"
         />
 
-        <Text variants={textVariants} initial="hidden" animate="visible">
-          TeenShopify
-        </Text>
       </Link>
     </Container>
   );

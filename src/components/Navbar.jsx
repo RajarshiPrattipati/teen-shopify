@@ -102,14 +102,18 @@ const Navbar = () => {
   const { scroll } = useLocomotiveScroll();
 
   const handleScroll = (id) => {
-    let elem = document.querySelector(id);
-    // console.log(elem);
+    const elem = document.querySelector(id);
     setClick(!click);
-    scroll.scrollTo(elem, {
-      offset: '-100',
-      duration: '2000',
-      easing: [0.25, 0.0, 0.35, 1.0],
-    });
+    if (!elem) return;
+    if (scroll) {
+      scroll.scrollTo(elem, {
+        offset: '-100',
+        duration: '2000',
+        easing: [0.25, 0.0, 0.35, 1.0],
+      });
+    } else {
+      elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (

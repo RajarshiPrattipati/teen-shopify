@@ -135,7 +135,7 @@ const Title = styled.h1`
 
 const About = () => {
   return (
-    <Section id="fixed-target" className="about">
+    <Section id="about-target" className="about">
       <Title
         data-scroll
         data-scroll-speed="-2"
@@ -143,7 +143,7 @@ const About = () => {
       >
         About Us
       </Title>
-      <Left data-scroll data-scroll-sticky data-scroll-target="#fixed-target">
+      <Left data-scroll data-scroll-sticky data-scroll-target="#about-target">
         We&apos;re fashion studio based in california. We create unique designs
         that will blow your mind. We also design unique jewellary pieces.
         Fashion is an ART that can not be grasped by everyone.

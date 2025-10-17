@@ -114,13 +114,17 @@ const Footer = () => {
   const { scroll } = useLocomotiveScroll();
 
   const handleScroll = (id) => {
-    let elem = document.querySelector(id);
-    // console.log(elem);
-    scroll.scrollTo(elem, {
-      offset: "-100",
-      duration: "2000",
-      easing: [0.25, 0.0, 0.35, 1.0],
-    });
+    const elem = document.querySelector(id);
+    if (!elem) return;
+    if (scroll) {
+      scroll.scrollTo(elem, {
+        offset: "-100",
+        duration: "2000",
+        easing: [0.25, 0.0, 0.35, 1.0],
+      });
+    } else {
+      elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (

@@ -22,15 +22,16 @@ function App() {
   const [Loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    const t = setTimeout(() => {
       setLoaded(true);
     }, 3000);
+    return () => clearTimeout(t);
   }, []);
 
   return (
     <>
-      <GlobalStyles />
       <ThemeProvider theme={dark}>
+        <GlobalStyles />
         <LocomotiveScrollProvider
           options={{
             smooth: true,
@@ -58,10 +59,10 @@ function App() {
               {Loaded ? null : <Loader />}
 
               <Home key="home" />
-              <About key="about" />
               <Shop key="Shop" />
               <Marquee key="marquee" />
               <NewArrival key="new arrival" />
+              <About key="about" />
               <Footer key="Footer" />
             </AnimatePresence>
           </main>
