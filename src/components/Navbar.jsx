@@ -6,10 +6,8 @@ import styled from 'styled-components';
 
 const NavContainer = styled(motion.div)`
   position: absolute;
-  /* left: 50%; */
   top: ${(props) => (props.click ? '0' : `-${props.theme.navHeight}`)};
   transition: all 0.3s ease;
-  /* transform: translateX(-50%); */
   z-index: 6;
   width: 100vw;
 
@@ -17,10 +15,11 @@ const NavContainer = styled(motion.div)`
   justify-content: center;
   align-items: center;
 
-  
   @media (max-width: 40em) {
-    top: ${(props) => (props.click ? '0' : `calc(-50vh - 4rem)`)};
-
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: ${(props) => (props.click ? '0' : '-60vh')};
   }
 `;
 
@@ -56,8 +55,9 @@ const MenuBtn = styled.li`
   transition: all 0.3s ease;
 
   @media (max-width: 40em) {
-    width: 10rem;
-    height: 2rem;
+    width: 12rem;
+    height: 2.25rem;
+    font-size: ${(props) => props.theme.fontsm};
 
   }
 `;
@@ -76,9 +76,12 @@ const MenuItems = styled(motion.ul)`
   padding: 0 10rem;
 
   @media (max-width: 40em) {
-    flex-direction:column;
-    padding:2rem 0;
-    height: 50vh;
+    flex-direction: column;
+    padding: 2rem 0 4rem;
+    height: 60vh;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   }
 `;
 
@@ -87,8 +90,8 @@ const Item = styled(motion.li)`
   color: ${(props) => props.theme.text};
 
   @media (max-width: 40em) {
-    flex-direction:column;
-    padding:0.5rem 0;
+    padding: 0.5rem 0.25rem;
+    font-size: ${(props) => props.theme.fontmd};
 
   }
 `;

@@ -29,6 +29,9 @@ const Section = styled(motion.section)`
   position: relative;
 
   /* background-color: orange; */
+  @media (max-width: 48em) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h1`
@@ -80,9 +83,14 @@ const Left = styled.div`
   }
 
   @media (max-width: 48em) {
-    width: 40%;
+    position: static;
+    width: 100%;
+    min-height: auto;
+    padding: 4rem 1.25rem 2rem;
+    text-align: center;
     p {
       font-size: ${(props) => props.theme.fontsm};
+      width: 100%;
     }
   }
   @media (max-width: 30em) {
@@ -102,6 +110,20 @@ const Right = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width: 48em) {
+    position: static;
+    left: auto;
+    padding-left: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    padding: 2rem 1rem 3rem;
+  }
+  @media (max-width: 30em) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 const Item = styled(motion.div)`
@@ -122,7 +144,9 @@ const Item = styled(motion.div)`
   }
 
   @media (max-width: 48em) {
-    width: 15rem;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 `;
 //data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal"
@@ -148,10 +172,14 @@ const Shop = () => {
   const Horizontalref = useRef(null);
 
   useLayoutEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      // Use natural vertical flow on mobile
+      return;
+    }
+
     let element = ref.current;
-
     let scrollingElement = Horizontalref.current;
-
     let pinWrapWidth = scrollingElement.offsetWidth;
     let t1 = gsap.timeline();
 
@@ -164,8 +192,6 @@ const Shop = () => {
           scroller: ".App", //locomotive-scroll
           scrub: 1,
           pin: true,
-          // markers: true,
-          // anticipatePin: 1,
         },
         height: `${scrollingElement.scrollWidth}px`,
         ease: "none",
@@ -178,10 +204,8 @@ const Shop = () => {
           end: `${pinWrapWidth} bottom`,
           scroller: ".App", //locomotive-scroll
           scrub: 1,
-          // markers: true,
         },
         x: -pinWrapWidth,
-
         ease: "none",
       });
       ScrollTrigger.refresh();

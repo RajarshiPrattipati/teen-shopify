@@ -34,12 +34,12 @@ function App() {
         <LocomotiveScrollProvider
           options={{
             smooth: true,
-            // ... all available Locomotive Scroll instance options
+            // Prefer native scroll on mobile/tablet for stability
             smartphone: {
-              smooth: true,
+              smooth: false,
             },
             tablet: {
-              smooth: true,
+              smooth: false,
             },
           }}
           watch={

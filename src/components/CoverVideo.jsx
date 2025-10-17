@@ -7,10 +7,12 @@ import MainVideo from "../assets/Walking Girl.mp4";
 const VideoContainer = styled.section`
   width: 100%;
   height: 100vh;
+  height: 100svh; /* better mobile viewport height */
   position: relative;
   video {
     width: 100%;
     height: 100vh;
+    height: 100svh;
     object-fit: cover;
 
     @media (max-width: 48em) {
@@ -125,7 +127,7 @@ const CoverVideo = () => {
         </motion.h2>
       </Title>
 
-      <video src={MainVideo} type="video/mp4" autoPlay muted loop />
+      <video src={MainVideo} type="video/mp4" autoPlay muted loop playsInline />
     </VideoContainer>
   );
 };

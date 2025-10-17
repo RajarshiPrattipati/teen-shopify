@@ -11,17 +11,19 @@ import img4 from '../assets/Images/14.webp';
 
 const Section = styled.section`
   min-height: 100vh;
-  /* height: auto; */
   width: 100%;
   margin: 0 auto;
-  /* height: 300vh; */
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: relative;
-  /* background-color: ${(props) => props.theme.text}; */
+
+  @media (max-width: 48em) {
+    min-height: auto;
+    padding: 4rem 0 2rem;
+  }
 `;
 
 const Overlay = styled.div`
@@ -49,14 +51,16 @@ const Overlay = styled.div`
     height: 80vh;
   }
   @media (max-width: 48em) {
-  width: 60vw;
-
-    height: 80vh;
+    width: 90vw;
+    height: 40vh;
+    box-shadow: none;
+    border: 0;
+    background: rgba(0,0,0,0.08);
+    border-radius: 16px;
   }
   @media (max-width: 30em) {
-  width: 80vw;
-
-    height: 60vh;
+    width: 92vw;
+    height: 36vh;
   }
 `;
 
@@ -80,11 +84,13 @@ const Container = styled.div`
 
   }
   @media (max-width: 48em) {
-  width: 40vw;
+    position: static;
+    transform: none;
+    width: 80vw;
 
   }
   @media (max-width: 30em) {
-  width: 60vw;
+    width: 88vw;
 
   }
 `;
@@ -162,10 +168,15 @@ const NewArrival = () => {
 
 
   useLayoutEffect(() => {
-    let element = ref.current;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      // Natural flow on mobile
+      return;
+    }
 
+    let element = ref.current;
     let scrollingElement = ScrollingRef.current;
-let t1= gsap.timeline();
+    let t1 = gsap.timeline();
     setTimeout(() => {
       let mainHeight = scrollingElement.scrollHeight;
       element.style.height = `calc(${mainHeight / 4}px)`;
@@ -177,26 +188,21 @@ let t1= gsap.timeline();
           scroller: '.App', //locomotive-scroll
           scrub: 1,
           pin: true,
-          // markers: true,
         },
         ease: 'none',
       });
 
       t1.fromTo(
         scrollingElement,
-        {
-          y: '0',
-        },
+        { y: '0' },
         {
           y: '-100%',
           scrollTrigger: {
-            // id: `section-${index + 1}`,
             trigger: scrollingElement,
             start: 'top top',
             end: 'bottom top',
             scroller: '.App',
             scrub: 1,
-            // markers: true,
           },
         },
       );
