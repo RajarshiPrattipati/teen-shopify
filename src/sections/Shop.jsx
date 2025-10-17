@@ -174,15 +174,16 @@ const Shop = () => {
   const isMobile = useIsMobile(768);
 
   useLayoutEffect(() => {
+    let t1;
     if (isMobile) {
       // Use natural vertical flow on mobile
-      return;
+      return () => {};
     }
 
     let element = ref.current;
     let scrollingElement = Horizontalref.current;
     let pinWrapWidth = scrollingElement.offsetWidth;
-    let t1 = gsap.timeline();
+    t1 = gsap.timeline();
 
     setTimeout(() => {
       t1.to(element, {
@@ -214,10 +215,10 @@ const Shop = () => {
     ScrollTrigger.refresh();
 
     return () => {
-      t1.kill();
+      if (t1) t1.kill();
       ScrollTrigger.kill();
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <Section ref={ref} id="shop">

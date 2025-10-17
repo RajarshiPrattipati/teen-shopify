@@ -170,14 +170,15 @@ const NewArrival = () => {
 
 
   useLayoutEffect(() => {
+    let t1;
     if (isMobile) {
       // Natural flow on mobile
-      return;
+      return () => {};
     }
 
     let element = ref.current;
     let scrollingElement = ScrollingRef.current;
-    let t1 = gsap.timeline();
+    t1 = gsap.timeline();
     setTimeout(() => {
       let mainHeight = scrollingElement.scrollHeight;
       element.style.height = `calc(${mainHeight / 4}px)`;
@@ -213,10 +214,10 @@ const NewArrival = () => {
     ScrollTrigger.refresh();
 
     return () => {
-      t1.kill();
+      if (t1) t1.kill();
       ScrollTrigger.kill();
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <Section  ref={ref} id="fixed-target" className="new-arrival">

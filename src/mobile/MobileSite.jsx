@@ -218,7 +218,7 @@ const MobileSite = () => {
       <SplitCol>
         {arrivals.map(({ src, title }, i) => (
           <SplitRow key={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.4 }}>
-            <div className="imgWrap" style={{ ['--x']: i % 2 ? '20%' : '80%' }}>
+            <div className="imgWrap" style={{ '--x': i % 2 ? '20%' : '80%' }}>
               <img src={src} alt={title} />
             </div>
             <div className="copy">
